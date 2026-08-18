@@ -3,170 +3,1152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Nuestra Historia — ∞</title>
+
     <link rel="stylesheet" href="style.css">
-    <!-- Fuentes Premium Cinzel e Inter -->
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Cinzel:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
-    <!-- Canvas para las partículas sutiles de fondo -->
+    <!-- PARTÍCULAS -->
     <canvas id="particles-canvas"></canvas>
-    <!-- Reproductor de música flotante -->
+
+
+    <!-- MÚSICA -->
     <div class="music-player-container">
-        <audio id="bg-audio" loop src="https://mixkit.co"></audio>
-        <button id="music-toggle-btn" class="music-btn" aria-label="Control de música">
-            <span class="music-icon">🎵</span>
+
+        <audio id="bg-audio" loop src="musica.mp3"></audio>
+
+        <button id="music-toggle-btn" class="music-btn">
+            <span class="music-icon">♫</span>
             <span class="music-text">REPRODUCIR MÚSICA</span>
         </button>
-    </div>
-    <!-- 1. Pantalla Inicial (Intro) -->
-<div id="intro" class="intro-overlay">
-    <div class="intro-content">
-            <span class="intro-subtitle">CAPÍTULO I</span>
-            <h1 class="intro-title">Nuestra Historia</h1>
-            <p class="intro-text">Hay momentos que se vuelven eternos desde el segundo en que ocurren.</p>
-            <button id="btn-enter" class="btn-premium">
-                <span>Entrar a nuestra historia</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-            </button>
-        </div>
+
     </div>
 
-    <!-- Contenido Principal -->
-    <div id="main-content" class="content-wrapper is-hidden">
-        
+
+    <!-- ================================================= -->
+    <!-- PANTALLA INICIAL -->
+    <!-- ================================================= -->
+
+    <div id="intro" class="intro-overlay">
+
+        <div class="intro-content">
+
+            <span class="intro-subtitle">
+                CAPÍTULO I
+            </span>
+
+            <h1 class="intro-title">
+                Nuestra Historia
+            </h1>
+
+            <p class="intro-text">
+                Hay momentos que se vuelven eternos
+                desde el segundo en que ocurren.
+            </p>
+
+            <button id="btn-enter" class="btn-premium">
+
+                <span>
+                    Entrar a nuestra historia
+                </span>
+
+                <span class="arrow">
+                    →
+                </span>
+
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- CONTENIDO PRINCIPAL -->
+    <!-- ================================================= -->
+
+    <main id="main-content" class="content-wrapper is-hidden">
+
+
+        <!-- NAVEGACIÓN -->
+
         <nav class="nav-bar">
-            <div id="secret-logo" class="nav-logo" title="Un secreto vive aquí...">N.H.</div>
-            <div class="nav-links">
-                <button data-target="historia">Cronología</button>
-                <button data-target="momentos">Galería</button>
-                <button data-target="tu">Esencia</button>
-                <button data-target="cartas">Cartas</button>
-                <button data-target="futuro">Destinos</button>
+
+            <div
+                id="secret-logo"
+                class="nav-logo">
+
+                N.H.
+
             </div>
+
+            <div class="nav-links">
+
+                <button data-target="historia">
+                    Historia
+                </button>
+
+                <button data-target="momentos">
+                    Momentos
+                </button>
+
+                <button data-target="tu">
+                    Tú
+                </button>
+
+                <button data-target="cartas">
+                    Cartas
+                </button>
+
+                <button data-target="futuro">
+                    Futuro
+                </button>
+
+            </div>
+
         </nav>
 
-        <!-- 2. Hero Principal -->
+
+        <!-- ================================================= -->
+        <!-- HERO -->
+        <!-- ================================================= -->
+
         <header id="inicio" class="hero-section">
-            <div class="hero-overlay"></div>
+
             <div class="hero-image-wrapper">
-                <img src="fotos/portada.jpg" alt="Nuestra Portada" class="hero-img">
+
+                <img
+                    src="fotos/portada.jpg"
+                    alt="Nuestra portada"
+                    class="hero-img">
+
             </div>
+
+            <div class="hero-overlay"></div>
+
             <div class="hero-content scroll-reveal">
-                <span class="hero-tag">A TU LADO</span>
-                <h2 class="hero-title">Todo se volvió un poco más real, un poco más bonito.</h2>
-                <button class="btn-scroll" data-target="historia">
-                    <span>Descubrir memorias</span>
-                    <span class="arrow-down">↓</span>
+
+                <span class="hero-tag">
+                    A TU LADO
+                </span>
+
+                <h2 class="hero-title">
+                    Todo se volvió un poco más real,
+                    un poco más bonito.
+                </h2>
+
+                <button
+                    class="btn-scroll"
+                    data-target="historia">
+
+                    <span>
+                        Descubrir nuestra historia
+                    </span>
+
+                    <span class="arrow-down">
+                        ↓
+                    </span>
+
                 </button>
+
             </div>
+
         </header>
 
-        <!-- 3. Historia -->
+
+        <!-- ================================================= -->
+        <!-- HISTORIA -->
+        <!-- ================================================= -->
+
         <section id="historia" class="section">
+
             <div class="container">
+
                 <div class="section-header scroll-reveal">
-                    <span class="section-number">01 /</span>
-                    <h2 class="section-title">La Cronología</h2>
-                    <p class="section-subtitle">Los capítulos que nos trajeron hasta el día de hoy.</p>
+
+                    <span class="section-number">
+                        01 /
+                    </span>
+
+                    <h2 class="section-title">
+                        La Cronología
+                    </h2>
+
+                    <p class="section-subtitle">
+                        Los capítulos que nos trajeron hasta el día de hoy.
+                    </p>
+
                 </div>
+
 
                 <div class="timeline">
-                    <!-- Etapa 1 -->
-                    <div class="timeline-item scroll-reveal">
-                        <div class="timeline-img-box viewable-photo">
-                            <img src="fotos/foto1.jpg" alt="El comienzo en noveno">
-                        </div>
-                        <div class="timeline-text-box">
-                            <span class="timeline-date">EL COMIENZO</span>
-                            <h4>“Todo empezó en noveno.”</h4>
-                            <p>Nos conocimos en noveno y, aunque tal vez en ese momento tú no te dabas cuenta, a mí ya me gustabas. Intenté acercarme, pero no me hiciste mucho caso jajaja. Aun así, algo de ti me llamaba demasiado la atención.</p>
-                            <br>
-                            <p>En 2024 pasamos prácticamente todo el año hablando y, mientras más te conocía, más me encantabas. Me fui enamorando de tu forma de ser, de nuestras conversaciones y de todos esos pequeños momentos que fuimos compartiendo.</p>
-                            <br>
-                            <p>Después llegó diciembre y dejamos de hablar. Pensé que quizás ahí había terminado todo, pero no sabía que todavía nos faltaba muchísimo por vivir.</p>
-                        </div>
-                    </div>
 
-                    <!-- Etapa 2 -->
-                    <div class="timeline-item scroll-reveal alt-layout">
-                        <div class="timeline-img-box viewable-photo">
-                            <img src="fotos/foto2.jpg" alt="La fiesta de Milena">
-                        </div>
-                        <div class="timeline-text-box">
-                            <span class="timeline-date">UN RECUERDO ESPECIAL</span>
-                            <h4>“La fiesta de XV de Milena.”</h4>
-                            <p>Si tuviera que escoger un recuerdo especial de esos primeros momentos, probablemente elegiría la fiesta de XV de Milena.</p>
-                            <br>
-                            <p>No sé si tú lo recuerdas exactamente como yo, pero para mí tenía algo diferente. Porque tú me gustabas muchísimo y yo estaba viviendo esos momentos contigo mientras por dentro pensaba en lo mucho que me gustabas.</p>
-                            <br>
-                            <p>Tal vez para ti simplemente era una fiesta más, pero para mí era uno de esos momentos donde estar cerca de ti ya significaba muchísimo. Y ahora que miro hacia atrás, me da risa pensar que en ese momento todavía no sabía todo lo que iba a pasar después. No sabía que esa niña que tanto me gustaba algún día iba a convertirse en mi persona, en mi amor y en alguien tan importante para mí.</p>
-                        </div>
-                    </div>
 
-                    <!-- Etapa 3 -->
-                    <div class="timeline-item scroll-reveal">
+                    <!-- COMIENZO -->
+
+                    <article class="timeline-item scroll-reveal">
+
                         <div class="timeline-img-box viewable-photo">
-                            <img src="fotos/foto3.jpg" alt="El presente juntos">
+
+                            <img
+                                src="fotos/foto1.jpg"
+                                alt="Nuestro comienzo">
+
                         </div>
+
                         <div class="timeline-text-box">
-                            <span class="timeline-date">EL PRESENTE</span>
-                            <h4>“Y aquí estamos ahora.”</h4>
-                            <p>En marzo de 2025 volvimos a hablar y poco a poco todo volvió a sentirse bien. Volvieron las conversaciones, volvieron las ganas de estar cerca y volvieron todos esos sentimientos que nunca se habían ido del todo. Hasta que un día pasó. Nos besamos. Y desde ahí todo empezó a cambiar.</p>
-                            <br>
-                            <p>Hasta que llegó el 23 de julio de 2025, el día en que finalmente nos hicimos pareja y empezó oficialmente esta historia que hoy estoy contando. Y pensar que todo comenzó simplemente porque tú no me hiciste caso en noveno jajaja.</p>
+
+                            <span class="timeline-date">
+                                EL COMIENZO
+                            </span>
+
+                            <h4>
+                                “Todo empezó en noveno.”
+                            </h4>
+
+                            <p>
+                                nos conocimos en noveno y, aunque tal vez
+                                tú no te dabas cuenta, a mí ya me gustabas.
+                                intenté acercarme, pero no me hiciste mucho
+                                caso jajaja. aun así, algo de ti me llamaba
+                                demasiado la atención.
+                            </p>
+
+                            <p>
+                                en 2024 pasamos prácticamente todo el año
+                                hablando y, mientras más te conocía, más
+                                me encantabas. me fui enamorando de tu forma
+                                de ser, de nuestras conversaciones y de todos
+                                esos pequeños momentos que fuimos compartiendo.
+                            </p>
+
+                            <p>
+                                después llegó diciembre y dejamos de hablar.
+                                pensé que quizás ahí había terminado todo,
+                                pero no sabía que todavía nos faltaba
+                                muchísimo por vivir.
+                            </p>
+
                         </div>
-                    </div>
+
+                    </article>
+
+
+                    <!-- XV MILENA -->
+
+                    <article class="timeline-item alt-layout scroll-reveal">
+
+                        <div class="timeline-img-box viewable-photo">
+
+                            <img
+                                src="fotos/foto2.jpg"
+                                alt="La fiesta de XV de Milena">
+
+                        </div>
+
+                        <div class="timeline-text-box">
+
+                            <span class="timeline-date">
+                                UN RECUERDO ESPECIAL
+                            </span>
+
+                            <h4>
+                                “La fiesta de XV de Milena.”
+                            </h4>
+
+                            <p>
+                                si tuviera que escoger un recuerdo especial
+                                de esos primeros momentos, probablemente
+                                elegiría la fiesta de XV de Milena.
+                            </p>
+
+                            <p>
+                                no sé si tú lo recuerdas exactamente como yo,
+                                pero para mí tenía algo diferente. porque tú
+                                me gustabas muchísimo y yo estaba viviendo
+                                esos momentos contigo mientras por dentro
+                                pensaba en lo mucho que me gustabas.
+                            </p>
+
+                            <p>
+                                tal vez para ti simplemente era una fiesta
+                                más, pero para mí era uno de esos momentos
+                                donde estar cerca de ti ya significaba
+                                muchísimo.
+                            </p>
+
+                            <p>
+                                y ahora que miro hacia atrás, me da risa
+                                pensar que en ese momento todavía no sabía
+                                todo lo que iba a pasar después.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- MARZO / PRESENTE -->
+
+                    <article class="timeline-item scroll-reveal">
+
+                        <div class="timeline-img-box viewable-photo">
+
+                            <img
+                                src="fotos/foto3.jpg"
+                                alt="Nuestra historia">
+
+                        </div>
+
+                        <div class="timeline-text-box">
+
+                            <span class="timeline-date">
+                                MARZO 2025
+                            </span>
+
+                            <h4>
+                                “Volvimos a encontrarnos.”
+                            </h4>
+
+                            <p>
+                                en marzo de 2025 volvimos a hablar y poco
+                                a poco todo volvió a sentirse bien.
+                                volvieron las conversaciones, volvieron
+                                las ganas de estar cerca y volvieron todos
+                                esos sentimientos que nunca se habían ido
+                                del todo.
+                            </p>
+
+                            <p>
+                                hasta que un día pasó.
+                            </p>
+
+                            <p class="special-line">
+                                nos besamos.
+                            </p>
+
+                            <p>
+                                y desde ahí todo empezó a cambiar.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- 23 JULIO -->
+
+                    <article class="timeline-item alt-layout scroll-reveal">
+
+                        <div class="timeline-img-box viewable-photo">
+
+                            <img
+                                src="fotos/foto4.jpg"
+                                alt="23 de julio de 2025">
+
+                        </div>
+
+                        <div class="timeline-text-box">
+
+                            <span class="timeline-date">
+                                23 DE JULIO DE 2025
+                            </span>
+
+                            <h4>
+                                “El día que comenzamos.”
+                            </h4>
+
+                            <p>
+                                llegó el 23 de julio de 2025, el día en que
+                                finalmente nos hicimos pareja y empezó
+                                oficialmente esta historia.
+                            </p>
+
+                            <p>
+                                y pensar que todo comenzó simplemente porque
+                                tú no me hiciste caso en noveno jajaja.
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- PRESENTE -->
+
+                    <article class="timeline-item scroll-reveal">
+
+                        <div class="timeline-text-box timeline-full">
+
+                            <span class="timeline-date">
+                                EL PRESENTE
+                            </span>
+
+                            <h4>
+                                “Y aquí estamos ahora.”
+                            </h4>
+
+                            <p>
+                                hoy sé que todavía tenemos muchísimo que
+                                mejorar. no quiero hacer como si nuestra
+                                relación fuera perfecta, porque no lo es
+                                y los dos tenemos cosas que aprender,
+                                cambiar y mejorar.
+                            </p>
+
+                            <p>
+                                pero también sé algo que para mí es mucho
+                                más importante:
+                            </p>
+
+                            <p class="special-line">
+                                te sigo amando.
+                            </p>
+
+                            <p>
+                                te amo en los días buenos y en los días
+                                difíciles. quiero que sigamos creciendo
+                                juntos, aprendiendo de nuestros errores
+                                y haciendo que nuestra relación sea cada
+                                vez mejor.
+                            </p>
+
+                            <p>
+                                porque después de todo lo que hemos vivido
+                                desde noveno, después de haber dejado de
+                                hablar, de volver a encontrarnos, de ese
+                                primer beso y de aquel 23 de julio de 2025,
+                                no quiero que nuestra historia termine aquí.
+                            </p>
+
+                            <p>
+                                quiero seguir escribiéndola contigo.
+                            </p>
+
+                            <p class="special-line">
+                                seguir eligiéndote.
+                            </p>
+
+                            <p>
+                                te sigo amando hoy y quiero seguir amándote
+                                durante toda mi vida. ❤️
+                            </p>
+
+                        </div>
+
+                    </article>
+
                 </div>
+
             </div>
+
         </section>
 
-        <!-- 4. Momentos -->
+
+        <!-- ================================================= -->
+        <!-- MOMENTOS -->
+        <!-- ================================================= -->
+
         <section id="momentos" class="section bg-darker">
+
             <div class="container">
+
                 <div class="section-header scroll-reveal">
-                    <span class="section-number">02 /</span>
-                    <h3 class="section-title">Fragmentos de Tiempo</h3>
+
+                    <span class="section-number">
+                        02 /
+                    </span>
+
+                    <h2 class="section-title">
+                        Fragmentos de Tiempo
+                    </h2>
+
                 </div>
+
 
                 <div class="gallery-grid">
+
+
                     <div class="gallery-card scroll-reveal viewable-photo">
-                        <div class="card-img-wrapper"><img src="fotos/foto1.jpg" alt="Momento uno"></div>
+
+                        <img
+                            src="fotos/foto1.jpg"
+                            alt="Recuerdo uno">
+
                         <div class="card-overlay">
-                            <span class="card-tag">01 / RECUERDO</span>
-                            <h5>Complicidad</h5>
-                            <p>Desde los salones de noveno hasta el día de hoy.</p>
+
+                            <span>
+                                01 / RECUERDO
+                            </span>
+
+                            <h5>
+                                Complicidad
+                            </h5>
+
+                            <p>
+                                desde los salones de noveno
+                                hasta el día de hoy.
+                            </p>
+
                         </div>
+
                     </div>
+
+
                     <div class="gallery-card scroll-reveal viewable-photo">
-                        <div class="card-img-wrapper"><img src="fotos/foto2.jpg" alt="Momento dos"></div>
+
+                        <img
+                            src="fotos/foto2.jpg"
+                            alt="Recuerdo dos">
+
                         <div class="card-overlay">
-                            <span class="card-tag">02 / RECUERDO</span>
-                            <h5>Destino</h5>
-                            <p>Esa noche en los XV de Milena donde todo se sentía diferente.</p>
+
+                            <span>
+                                02 / RECUERDO
+                            </span>
+
+                            <h5>
+                                XV de Milena
+                            </h5>
+
+                            <p>
+                                esa noche donde tú me gustabas
+                                muchísimo.
+                            </p>
+
                         </div>
+
                     </div>
+
+
                     <div class="gallery-card scroll-reveal viewable-photo">
-                        <div class="card-img-wrapper"><img src="fotos/foto3.jpg" alt="Momento tres"></div>
+
+                        <img
+                            src="fotos/foto3.jpg"
+                            alt="Recuerdo tres">
+
                         <div class="card-overlay">
-                            <span class="card-tag">03 / RECUERDO</span>
-                            <h5>El Primer Beso</h5>
-                            <p>Cuando las conversaciones se convirtieron en nuestra realidad.</p>
+
+                            <span>
+                                03 / RECUERDO
+                            </span>
+
+                            <h5>
+                                El primer beso
+                            </h5>
+
+                            <p>
+                                cuando todo empezó a sentirse diferente.
+                            </p>
+
                         </div>
+
                     </div>
+
+
                     <div class="gallery-card scroll-reveal viewable-photo">
-                        <div class="card-img-wrapper"><img src="fotos/foto4.jpg" alt="Momento cuatro"></div>
+
+                        <img
+                            src="fotos/foto4.jpg"
+                            alt="Recuerdo cuatro">
+
                         <div class="card-overlay">
-                            <span class="card-tag">04 / RECUERDO</span>
-                            <h5>Nuestra Fecha</h5>
-                            <p>23 de Julio de 2025. El inicio oficial de lo nuestro.</p>
+
+                            <span>
+                                04 / RECUERDO
+                            </span>
+
+                            <h5>
+                                Nuestra fecha
+                            </h5>
+
+                            <p>
+                                23 de julio de 2025.
+                            </p>
+
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </section>
 
-Usa el código con precaución.∞Te sigo amando hoy y quiero seguiramándote durante toda mi vida.Hoy sé que todavía tenemos muchísimo que mejorar. No quiero hacer como si nuestra relación fuera perfecta, porque no lo es y los dos tenemos cosas que aprender, cambiar y mejorar. Pero también sé algo que para mí es mucho más importante: te sigo amando. Te amo en los días buenos y en los días difíciles. Quiero que sigamos haciendo que nuestra relación sea cada vez mejor porque no quiero que nuestra historia termine aquí. Quiero seguir escribiéndola contigo.Con todo mi amor×CARTA IPara cuando tengas un día difícil 🌧️Mamoi, mi amor, mi muñequita, mi zuri ❤️Si estás leyendo esto es porque probablemente estás teniendo uno de esos días donde nada se siente bien, donde tal vez estás triste, cansada, estresada o simplemente no tienes ganas de nada. Y quiero que antes de seguir leyendo sepas algo, mi amor: no tienes que estar bien siempre.Sé que a veces uno quiere hacerse la fuerte y decir que todo está bien aunque por dentro no sea así, pero conmigo nunca tienes que hacer eso, mamoi. Conmigo puedes estar triste, puedes llorar, puedes enojarte, puedes estar cansada, puedes no saber ni qué te pasa. Yo no voy a quererte menos por tener un día malo.Ojalá pudiera estar ahí ahorita mismo contigo, abrazarte, darte muchos besitos y decirte que todo va a estar bien mientras te tengo conmigo. Pero como no siempre puedo estar ahí físicamente, hice esto para que cuando lo necesites tengas un pedacito mío contigo.Mi muñequita, no tienes que solucionar todo hoy. Si hoy fue un día de mierda, pues fue un día de mierda y ya. Mañana es otro día. Descansa, llora si necesitas llorar, come algo, acuéstate, escucha música, háblame o simplemente quédate tranquila un rato. No tienes que poder con todo al mismo tiempo.Y si en algún momento de este día empiezas a pensar que no eres suficiente, quiero que te acuerdes de cómo te veo yo. Porque tú tal vez hoy no te ves bonita, especial o importante, pero yo sí te veo así. Yo veo a mi zuri, a mi amor, a mi muñequita. Veo a la persona que llegó a mi vida y que poco a poco se volvió alguien demasiado importante para mí.Y no quiero estar solamente cuando estás feliz. Quiero estar cuando estés triste también. Cuando estés preocupada. Cuando no tengas ganas de hablar. Cuando necesites que alguien te escuche. Cuando solo quieras un abrazo. Y hasta cuando estés de mal humor conmigo jajaja.No siempre voy a saber qué decirte ni voy a poder arreglar lo que te está haciendo sentir mal, pero sí quiero que sepas que puedes contar conmigo. Aunque sea para quedarme ahí contigo sin decir nada.Así que mamoi, si hoy estás pasando por un día difícil, no te olvides de esto: tú eres muchísimo más que un día malo. Un día triste no cambia lo bonita que eres, no cambia lo mucho que vales y mucho menos cambia lo que yo siento por ti. Y si mañana sigues triste, pues mañana vuelves a leer esto. Y si pasado mañana también, lo vuelves a leer. Las veces que haga falta. Porque yo voy a seguir aquí.Te amo muchísimo, mi zuri. Y aunque hoy no lo sientas, quiero que recuerdes que hay alguien que te ama, que piensa en ti y que solo quiere verte bien. Te mando un abrazo enorme, muchos besitos y todo mi amor.Att: Tu novio que te ama demasiado ❤️ nnnce×CARTA IIPara cuando me extrañes mucho ✉️Si estás leyendo esto es porque me extrañas mucho, ¡así que mira a nuestros bebés jajaja! Ahí están nuestros peluches, nuestras cositas de Star Wars y todos nuestros hijos: Snoopy, Stitch, Barney, la ovejita, la Minnie pequeña y la Minnie grande 🥹Cuando los veas, quiero que te acuerdes de nosotros y de todos esos momentos bonitos que hemos pasado juntos. Sé que no es lo mismo que tenerme ahí contigo, pero al menos tienes un pedacito de nosotros cerquita.Así que abraza a nuestros bebés por mí mientras yo no estoy contigo jajaja.Y si me extrañas demasiado, acuérdate de algo: yo también te estoy extrañando y pensando en ti en este preciso instante.Te amo muchísimo, mi muñequita ❤️×CARTA IIIAbre cuando pienses en nuestro futuro ✨Mamoi, mi amor ❤️A veces me pongo a pensar en todo lo que todavía nos falta vivir y me hace demasiada ilusión imaginarlo contigo.Quiero viajar contigo y conocer las maravillas del mundo, ir a Disney y cumplir todas esas locuras que hemos hablado, conocer esos lugares de Rapunzel, vivir todo lo de Star Wars que tanto nos gusta y llenar todavía más nuestra vida de recuerdos.También quiero que algún día podamos mirar atrás y decir: “¿Te acuerdas cuando soñábamos con hacer todo esto?” y darnos cuenta de que lo logramos juntos.Quiero casarme contigo, tener nuestra propia casita, formar una familia y tener una vida llena de momentos nuestros. Quiero que nuestros peluches y todas esas cositas que tenemos ahora algún día sean parte de los recuerdos de cuando empezamos.No sé exactamente cómo será nuestro futuro ni cuánto nos costará llegar a cada uno de esos sueños, pero sí sé con quién quiero vivirlos de principio a fin: contigo.Ojalá podamos cumplir muchísimos de esos planes que hoy solamente imaginamos.Te amo, mi muñequita. ❤️×
+
+        <!-- ================================================= -->
+        <!-- TÚ -->
+        <!-- ================================================= -->
+
+        <section id="tu" class="section">
+
+            <div class="container">
+
+                <div class="section-header scroll-reveal">
+
+                    <span class="section-number">
+                        03 /
+                    </span>
+
+                    <h2 class="section-title">
+                        Tú
+                    </h2>
+
+                    <p class="section-subtitle">
+                        algunas cosas que amo de ti.
+                    </p>
+
+                </div>
+
+
+                <div class="qualities">
+
+                    <button
+                        class="quality-btn"
+                        data-message="tu forma de ser fue una de las cosas que poco a poco hizo que me gustaras cada vez más.">
+
+                        tu forma de ser
+
+                    </button>
+
+
+                    <button
+                        class="quality-btn"
+                        data-message="tu risa puede cambiar completamente mi día, incluso cuando no estoy teniendo un buen día.">
+
+                        tu risa
+
+                    </button>
+
+
+                    <button
+                        class="quality-btn"
+                        data-message="me encanta compartir contigo hasta las cosas más pequeñas, porque contigo terminan convirtiéndose en recuerdos.">
+
+                        nuestros momentos
+
+                    </button>
+
+
+                    <button
+                        class="quality-btn"
+                        data-message="y sobre todo, me encanta que seas tú. no necesito que seas perfecta para quererte.">
+
+                        tú
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="quality-message"
+                    class="quality-display">
+
+                    toca una de las opciones de arriba.
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- CARTAS -->
+        <!-- ================================================= -->
+
+        <section id="cartas" class="section bg-darker">
+
+            <div class="container">
+
+                <div class="section-header scroll-reveal">
+
+                    <span class="section-number">
+                        04 /
+                    </span>
+
+                    <h2 class="section-title">
+                        Cartas para ti
+                    </h2>
+
+                    <p class="section-subtitle">
+                        abre una cuando la necesites.
+                    </p>
+
+                </div>
+
+
+                <div class="letters-grid">
+
+
+                    <button
+                        class="letter-minimal"
+                        data-modal="carta1">
+
+                        <span class="letter-num">
+                            I
+                        </span>
+
+                        <h4>
+                            para cuando tengas un día difícil 🌧️
+                        </h4>
+
+                        <span class="letter-action">
+                            abrir carta
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="letter-minimal"
+                        data-modal="carta2">
+
+                        <span class="letter-num">
+                            II
+                        </span>
+
+                        <h4>
+                            para cuando me extrañes mucho ✉️
+                        </h4>
+
+                        <span class="letter-action">
+                            abrir carta
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="letter-minimal"
+                        data-modal="carta3">
+
+                        <span class="letter-num">
+                            III
+                        </span>
+
+                        <h4>
+                            para cuando pienses en nuestro futuro ✨
+                        </h4>
+
+                        <span class="letter-action">
+                            abrir carta
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- FUTURO -->
+        <!-- ================================================= -->
+
+        <section id="futuro" class="section">
+
+            <div class="container">
+
+                <div class="section-header scroll-reveal">
+
+                    <span class="section-number">
+                        05 /
+                    </span>
+
+                    <h2 class="section-title">
+                        Nuestro mañana
+                    </h2>
+
+                    <p class="section-subtitle">
+                        todavía nos queda muchísimo por vivir.
+                    </p>
+
+                </div>
+
+
+                <div class="future-block">
+
+
+                    <div class="future-item">
+
+                        <span class="future-number">
+                            01
+                        </span>
+
+                        <div>
+
+                            <h5>
+                                conocer el mundo
+                            </h5>
+
+                            <p>
+                                quiero viajar contigo y conocer
+                                las maravillas del mundo.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="future-item">
+
+                        <span class="future-number">
+                            02
+                        </span>
+
+                        <div>
+
+                            <h5>
+                                nuestros viajes soñados
+                            </h5>
+
+                            <p>
+                                ir a disney, conocer lugares de
+                                rapunzel y vivir todo lo de star wars
+                                que tanto nos gusta.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="future-item">
+
+                        <span class="future-number">
+                            03
+                        </span>
+
+                        <div>
+
+                            <h5>
+                                nuestra vida
+                            </h5>
+
+                            <p>
+                                algún día quiero casarme contigo,
+                                tener nuestra casita y formar una
+                                familia juntos.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="future-item">
+
+                        <span class="future-number">
+                            04
+                        </span>
+
+                        <div>
+
+                            <h5>
+                                seguir juntos
+                            </h5>
+
+                            <p>
+                                seguir creciendo, mejorando y
+                                convirtiendo nuestros sueños en
+                                recuerdos.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- CONTADOR -->
+
+                <div class="counter-box">
+
+                    <span class="counter-label">
+                        JUNTOS DESDE EL 23 DE JULIO DE 2025
+                    </span>
+
+                    <div class="counter-numbers">
+
+                        <span id="days-val">
+                            0
+                        </span>
+
+                        <span class="unit">
+                            días
+                        </span>
+
+                    </div>
+
+                    <p class="counter-subtext">
+                        y contando...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================================================= -->
+        <!-- FINAL -->
+        <!-- ================================================= -->
+
+        <section class="final-section">
+
+            <div class="final-content">
+
+                <div class="infinite-sign">
+                    ∞
+                </div>
+
+                <h2 class="final-title">
+                    todavía nos quedan
+                    muchísimas páginas por escribir.
+                </h2>
+
+                <p class="final-message">
+                    gracias por ser parte de mi vida, por cada recuerdo,
+                    cada risa, cada momento y por todo lo que todavía
+                    nos falta vivir.
+                </p>
+
+                <div class="final-signature">
+                    tú + yo
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ================================================= -->
+    <!-- MODALES DE CARTAS -->
+    <!-- ================================================= -->
+
+    <div
+        id="global-modal-overlay"
+        class="modal-overlay is-hidden">
+
+
+        <article
+            id="carta1"
+            class="modal-card is-hidden">
+
+            <button class="modal-close">
+                ×
+            </button>
+
+            <span class="modal-meta">
+                CARTA I
+            </span>
+
+            <h3>
+                para cuando tengas un día difícil 🌧️
+            </h3>
+
+            <p>
+                mamoi, mi amor, mi muñequita ❤️
+            </p>
+
+            <p>
+                si estás leyendo esto es porque probablemente estás
+                teniendo uno de esos días donde nada se siente bien.
+                quiero que recuerdes que no tienes que estar bien siempre.
+            </p>
+
+            <p>
+                conmigo puedes estar triste, puedes llorar, puedes
+                estar cansada o simplemente no tener ganas de nada.
+                yo no voy a quererte menos por tener un día malo.
+            </p>
+
+            <p>
+                ojalá pudiera estar ahí ahorita mismo contigo,
+                abrazarte y darte muchos besitos.
+            </p>
+
+            <p>
+                no tienes que solucionar todo hoy. descansa, llora
+                si necesitas llorar y recuerda que un día malo no
+                cambia lo bonita que eres ni lo mucho que vales.
+            </p>
+
+            <p>
+                y si mañana sigues triste, vuelves a leer esto.
+                las veces que haga falta.
+            </p>
+
+            <p>
+                porque yo voy a seguir aquí.
+            </p>
+
+            <p>
+                te amo muchísimo. ❤️
+            </p>
+
+        </article>
+
+
+        <article
+            id="carta2"
+            class="modal-card is-hidden">
+
+            <button class="modal-close">
+                ×
+            </button>
+
+            <span class="modal-meta">
+                CARTA II
+            </span>
+
+            <h3>
+                para cuando me extrañes mucho ✉️
+            </h3>
+
+            <p>
+                mamoi, mi amor ❤️
+            </p>
+
+            <p>
+                si estás leyendo esto es porque me extrañas mucho,
+                así que mira a nuestros bebés jajaja.
+            </p>
+
+            <p>
+                ahí están nuestros peluches, nuestras cositas de
+                star wars y todos nuestros hijos: snoopy, stitch,
+                barney, la ovejita, la minnie pequeña y la minnie grande.
+            </p>
+
+            <p>
+                cuando los veas, quiero que te acuerdes de nosotros
+                y de todos esos momentos bonitos que hemos pasado juntos.
+            </p>
+
+            <p>
+                así que abraza a nuestros bebés por mí mientras yo
+                no estoy contigo jajaja.
+            </p>
+
+            <p>
+                y si me extrañas demasiado, acuérdate de algo:
+                yo también te estoy extrañando y pensando en ti.
+            </p>
+
+            <p>
+                te amo muchísimo, mi muñequita ❤️
+            </p>
+
+        </article>
+
+
+        <article
+            id="carta3"
+            class="modal-card is-hidden">
+
+            <button class="modal-close">
+                ×
+            </button>
+
+            <span class="modal-meta">
+                CARTA III
+            </span>
+
+            <h3>
+                para cuando pienses en nuestro futuro ✨
+            </h3>
+
+            <p>
+                mamoi, mi amor ❤️
+            </p>
+
+            <p>
+                a veces me pongo a pensar en todo lo que todavía
+                nos falta vivir y me hace demasiada ilusión imaginarlo
+                contigo.
+            </p>
+
+            <p>
+                quiero viajar contigo y conocer las maravillas del mundo,
+                ir a disney, conocer esos lugares de rapunzel y vivir
+                todo lo de star wars que tanto nos gusta.
+            </p>
+
+            <p>
+                también quiero que algún día podamos mirar atrás y decir:
+                “¿te acuerdas cuando soñábamos con hacer todo esto?”
+                y darnos cuenta de que lo logramos.
+            </p>
+
+            <p>
+                quiero casarme contigo, tener nuestra propia casita,
+                formar una familia y tener una vida llena de momentos
+                nuestros.
+            </p>
+
+            <p>
+                no sé exactamente cómo será nuestro futuro, pero sí sé
+                con quién quiero vivirlo.
+            </p>
+
+            <p>
+                contigo.
+            </p>
+
+            <p>
+                te amo, mi muñequita. ❤️
+            </p>
+
+        </article>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- LIGHTBOX -->
+    <!-- ================================================= -->
+
+    <div
+        id="lightbox-viewer"
+        class="lightbox-container is-hidden">
+
+        <button
+            id="lightbox-close"
+            class="lightbox-close-btn">
+
+            ×
+
+        </button>
+
+        <img
+            id="lightbox-img"
+            src=""
+            alt="Fotografía ampliada">
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>

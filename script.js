@@ -1,118 +1,813 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Configuración aniversario: 23 de Julio de 2025
-    const relationshipStart = new Date(2025, 6, 23); 
 
-    // CANVAS PARTÍCULAS
-    const canvas = document.getElementById("particles-canvas");
-    if(canvas) {
-        const ctx = canvas.getContext("2d");
-        let particlesArray = [];
-        function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.addEventListener("resize", resizeCanvas); resizeCanvas();
-        class Particle {
-            constructor() { this.x = Math.random() * canvas.width; this.y = Math.random() * canvas.height; this.size = Math.random() * 1.2 + 0.4; this.speedX = Math.random() * 0.14 - 0.07; this.speedY = Math.random() * -0.2 - 0.05; this.alpha = Math.random() * 0.4 + 0.1; }
-            update() { this.x += this.speedX; this.y += this.speedY; if (this.y < 0) { this.y = canvas.height; this.x = Math.random() * canvas.width; } }
-            draw() { ctx.save(); ctx.globalAlpha = this.alpha; ctx.fillStyle = "#ffffff"; ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill(); ctx.restore(); }
-        }
-        function init() { for (let i = 0; i < 40; i++) { particlesArray.push(new Particle()); } }
-        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particlesArray.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
-        init(); animate();
-    }
 
-    // REPRODUCCTOR DE MÚSICA
-    const musicBtn = document.getElementById("music-toggle-btn");
-    const bgAudio = document.getElementById("bg-audio");
-    if (musicBtn && bgAudio) {
-        bgAudio.volume = 0.4;
-        musicBtn.addEventListener("click", () => {
-            if (bgAudio.paused) { bgAudio.play().then(() => { musicBtn.classList.add("playing"); musicBtn.querySelector(".music-text").textContent = "PAUSAR MÚSICA"; }); } 
-            else { bgAudio.pause(); musicBtn.classList.remove("playing"); musicBtn.querySelector(".music-text").textContent = "REPRODUCIR MÚSICA"; }
+    /* ==========================================
+       FECHA DE INICIO DE LA RELACIÓN
+    ========================================== */
+
+    const relationshipStart = new Date(2025, 6, 23);
+
+
+    /* ==========================================
+       ELEMENTOS PRINCIPALES
+    ========================================== */
+
+    const intro = document.getElementById("intro");
+    const enterButton = document.getElementById("btn-enter");
+    const mainContent = document.getElementById("main-content");
+
+
+    /* ==========================================
+       ENTRAR A LA PÁGINA
+    ========================================== */
+
+    if (enterButton && intro && mainContent) {
+
+        enterButton.addEventListener("click", () => {
+
+            intro.classList.add("fade-out");
+
+            mainContent.classList.remove("is-hidden");
+
+            setTimeout(() => {
+
+                intro.style.display = "none";
+
+                handleScrollReveal();
+
+            }, 1200);
+
+            playMusic();
+
         });
+
     }
 
-    // ➔ BOTÓN DE ENTRADA INTELIGENTE (Busca todas las opciones posibles para no fallar)
-    const btnEnter = document.getElementById("btn-enter") || document.querySelector(".btn-premium");
-    
-    if (btnEnter) {
-        btnEnter.addEventListener("click", () => {
-            // Busca la pantalla de intro por cualquiera de sus nombres posibles
-            const introScreen = document.getElementById("intro") || document.getElementById("intro-screen") || document.querySelector(".intro-overlay");
-            const mainContent = document.getElementById("main-content");
 
-            if (introScreen && mainContent) {
-                introScreen.classList.add("fade-out");
-                mainContent.classList.remove("is-hidden");
-                if (bgAudio) { bgAudio.play().catch(() => {}); }
-                setTimeout(() => { introScreen.style.display = "none"; handleScrollReveal(); }, 1200);
+    /* ==========================================
+       NAVEGACIÓN
+    ========================================== */
+
+    const navigationButtons =
+        document.querySelectorAll(
+            ".nav-links button, .btn-scroll"
+        );
+
+
+    navigationButtons.forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const targetId =
+                button.getAttribute("data-target");
+
+            const target =
+                document.getElementById(targetId);
+
+            if (target) {
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
             }
+
         });
+
+    });
+
+
+    /* ==========================================
+       PARTÍCULAS
+    ========================================== */
+
+    const canvas =
+        document.getElementById("particles-canvas");
+
+    const ctx =
+        canvas ? canvas.getContext("2d") : null;
+
+    let particles = [];
+
+
+    function resizeCanvas() {
+
+        if (!canvas) return;
+
+        canvas.width = window.innerWidth;
+
+        canvas.height = window.innerHeight;
+
     }
 
-    // NAVEGACIÓN SUAVE
-    document.querySelectorAll("[data-target]").forEach(link => {
-        link.addEventListener("click", () => {
-            const target = document.getElementById(link.getAttribute("data-target"));
-            if (target) target.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    class Particle {
+
+        constructor() {
+
+            this.x =
+                Math.random() * canvas.width;
+
+            this.y =
+                Math.random() * canvas.height;
+
+            this.size =
+                Math.random() * 1.2 + .4;
+
+            this.speedX =
+                Math.random() * .15 - .075;
+
+            this.speedY =
+                Math.random() * -.2 - .05;
+
+            this.alpha =
+                Math.random() * .35 + .1;
+
+        }
+
+
+        update() {
+
+            this.x += this.speedX;
+
+            this.y += this.speedY;
+
+
+            if (this.y < 0) {
+
+                this.y = canvas.height;
+
+                this.x =
+                    Math.random() * canvas.width;
+
+            }
+
+        }
+
+
+        draw() {
+
+            ctx.save();
+
+            ctx.globalAlpha = this.alpha;
+
+            ctx.fillStyle = "#ffffff";
+
+            ctx.beginPath();
+
+            ctx.arc(
+                this.x,
+                this.y,
+                this.size,
+                0,
+                Math.PI * 2
+            );
+
+            ctx.fill();
+
+            ctx.restore();
+
+        }
+
+    }
+
+
+    function createParticles() {
+
+        if (!canvas) return;
+
+        particles = [];
+
+        const amount =
+            Math.min(
+                50,
+                Math.floor(window.innerWidth / 25)
+            );
+
+
+        for (let i = 0; i < amount; i++) {
+
+            particles.push(
+                new Particle()
+            );
+
+        }
+
+    }
+
+
+    function animateParticles() {
+
+        if (!canvas || !ctx) return;
+
+        ctx.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+
+        particles.forEach(particle => {
+
+            particle.update();
+
+            particle.draw();
+
         });
+
+
+        requestAnimationFrame(
+            animateParticles
+        );
+
+    }
+
+
+    if (canvas) {
+
+        resizeCanvas();
+
+        createParticles();
+
+        animateParticles();
+
+        window.addEventListener(
+            "resize",
+            () => {
+
+                resizeCanvas();
+
+                createParticles();
+
+            }
+        );
+
+    }
+
+
+    /* ==========================================
+       MÚSICA
+    ========================================== */
+
+    const musicButton =
+        document.getElementById(
+            "music-toggle-btn"
+        );
+
+    const audio =
+        document.getElementById(
+            "bg-audio"
+        );
+
+
+    function playMusic() {
+
+        if (!audio) return;
+
+
+        audio.volume = .4;
+
+
+        audio.play()
+            .then(() => {
+
+                if (musicButton) {
+
+                    musicButton.classList.add(
+                        "playing"
+                    );
+
+                    const text =
+                        musicButton.querySelector(
+                            ".music-text"
+                        );
+
+                    if (text) {
+
+                        text.textContent =
+                            "PAUSAR MÚSICA";
+
+                    }
+
+                }
+
+            })
+            .catch(() => {
+
+                /*
+                    El navegador puede bloquear
+                    la reproducción automática.
+                    El usuario puede pulsar el
+                    botón de música.
+                */
+
+            });
+
+    }
+
+
+    if (musicButton && audio) {
+
+        musicButton.addEventListener(
+            "click",
+            () => {
+
+                if (audio.paused) {
+
+                    playMusic();
+
+                } else {
+
+                    audio.pause();
+
+                    musicButton.classList.remove(
+                        "playing"
+                    );
+
+                    const text =
+                        musicButton.querySelector(
+                            ".music-text"
+                        );
+
+                    if (text) {
+
+                        text.textContent =
+                            "REPRODUCIR MÚSICA";
+
+                    }
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* ==========================================
+       CUALIDADES DE "TÚ"
+    ========================================== */
+
+    const qualityButtons =
+        document.querySelectorAll(
+            ".quality-btn"
+        );
+
+    const qualityMessage =
+        document.getElementById(
+            "quality-message"
+        );
+
+
+    qualityButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                qualityButtons.forEach(
+                    item =>
+                        item.classList.remove(
+                            "active"
+                        )
+                );
+
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                const message =
+                    button.getAttribute(
+                        "data-message"
+                    );
+
+
+                if (qualityMessage) {
+
+                    qualityMessage.textContent =
+                        message;
+
+                }
+
+            }
+        );
+
     });
 
-    // CUALIDADES INTERACTIVAS
-    document.querySelectorAll(".quality-btn").forEach(btn => {
-        btn.addEventListener("click", () => {
-            document.querySelectorAll(".quality-btn").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            document.querySelectorAll(".quality-message").forEach(msg => msg.classList.remove("active"));
-            const target = document.getElementById(btn.getAttribute("data-target"));
-            if (target) target.classList.add("active");
+
+    /* ==========================================
+       CARTAS / MODALES
+    ========================================== */
+
+    const modalOverlay =
+        document.getElementById(
+            "global-modal-overlay"
+        );
+
+    const letterButtons =
+        document.querySelectorAll(
+            "[data-modal]"
+        );
+
+    const modalCards =
+        document.querySelectorAll(
+            ".modal-card"
+        );
+
+    const closeButtons =
+        document.querySelectorAll(
+            ".modal-close"
+        );
+
+
+    function closeAllModals() {
+
+        if (!modalOverlay) return;
+
+
+        modalOverlay.classList.add(
+            "is-hidden"
+        );
+
+
+        modalCards.forEach(card => {
+
+            card.classList.add(
+                "is-hidden"
+            );
+
         });
+
+
+        document.body.style.overflow =
+            "auto";
+
+    }
+
+
+    letterButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const modalId =
+                    button.getAttribute(
+                        "data-modal"
+                    );
+
+
+                const modal =
+                    document.getElementById(
+                        modalId
+                    );
+
+
+                if (!modal || !modalOverlay) {
+                    return;
+                }
+
+
+                modalCards.forEach(card => {
+
+                    card.classList.add(
+                        "is-hidden"
+                    );
+
+                });
+
+
+                modal.classList.remove(
+                    "is-hidden"
+                );
+
+
+                modalOverlay.classList.remove(
+                    "is-hidden"
+                );
+
+
+                document.body.style.overflow =
+                    "hidden";
+
+            }
+        );
+
     });
 
-    // MODALES CARTAS
-    const overlay = document.getElementById("global-modal-overlay");
-    document.querySelectorAll("[data-modal]").forEach(trigger => {
-        trigger.addEventListener("click", () => {
-            const modal = document.getElementById(trigger.getAttribute("data-modal"));
-            if (overlay && modal) { overlay.classList.remove("is-hidden"); modal.classList.remove("is-hidden"); document.body.style.overflow = "hidden"; }
-        });
+
+    closeButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            closeAllModals
+        );
+
     });
-    function closeModals() { if (overlay) { overlay.classList.add("is-hidden"); document.querySelectorAll(".modal-card").forEach(c => c.classList.add("is-hidden")); document.body.style.overflow = "auto"; } }
-    document.querySelectorAll(".modal-close").forEach(btn => btn.addEventListener("click", closeModals));
-    if (overlay) overlay.addEventListener("click", (e) => { if (e.target === overlay) closeModals(); });
 
-    // LIGHTBOX FOTOS
-    const lightbox = document.getElementById("lightbox-viewer");
-    const lightboxImg = document.getElementById("lightbox-img");
-    document.querySelectorAll(".viewable-photo img").forEach(img => {
-        img.addEventListener("click", () => { if (lightbox && lightboxImg) { lightboxImg.src = img.src; lightbox.classList.remove("is-hidden"); document.body.style.overflow = "hidden"; } });
+
+    if (modalOverlay) {
+
+        modalOverlay.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target ===
+                    modalOverlay
+                ) {
+
+                    closeAllModals();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* ==========================================
+       LIGHTBOX DE FOTOS
+    ========================================== */
+
+    const lightbox =
+        document.getElementById(
+            "lightbox-viewer"
+        );
+
+    const lightboxImage =
+        document.getElementById(
+            "lightbox-img"
+        );
+
+    const lightboxClose =
+        document.getElementById(
+            "lightbox-close"
+        );
+
+
+    const photos =
+        document.querySelectorAll(
+            ".viewable-photo img"
+        );
+
+
+    photos.forEach(photo => {
+
+        photo.addEventListener(
+            "click",
+            () => {
+
+                if (!lightbox || !lightboxImage) {
+                    return;
+                }
+
+
+                lightboxImage.src =
+                    photo.src;
+
+
+                lightbox.classList.remove(
+                    "is-hidden"
+                );
+
+
+                document.body.style.overflow =
+                    "hidden";
+
+            }
+        );
+
     });
-    if (lightbox) lightbox.addEventListener("click", () => { lightbox.classList.add("is-hidden"); document.body.style.overflow = "auto"; });
 
-    // ESCAPE KEY
-    window.addEventListener("keydown", (e) => { if (e.key === "Escape") { closeModals(); if(lightbox) lightbox.classList.add("is-hidden"); } });
 
-    // RECOLO AUTOMÁTICO ANIVERSARIO
+    function closeLightbox() {
+
+        if (!lightbox) return;
+
+
+        lightbox.classList.add(
+            "is-hidden"
+        );
+
+
+        if (
+            !modalOverlay ||
+            modalOverlay.classList.contains(
+                "is-hidden"
+            )
+        ) {
+
+            document.body.style.overflow =
+                "auto";
+
+        }
+
+    }
+
+
+    if (lightboxClose) {
+
+        lightboxClose.addEventListener(
+            "click",
+            closeLightbox
+        );
+
+    }
+
+
+    if (lightbox) {
+
+        lightbox.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    event.target ===
+                    lightbox
+                ) {
+
+                    closeLightbox();
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* ==========================================
+       TECLA ESCAPE
+    ========================================== */
+
+    window.addEventListener(
+        "keydown",
+        event => {
+
+            if (event.key === "Escape") {
+
+                closeAllModals();
+
+                closeLightbox();
+
+            }
+
+        }
+    );
+
+
+    /* ==========================================
+       CONTADOR
+    ========================================== */
+
     function updateCounter() {
-        const today = new Date(); const diff = today - relationshipStart;
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const daysContainer = document.getElementById("days-val");
-        if (daysContainer) daysContainer.textContent = days >= 0 ? days : "00";
-    }
-    setInterval(updateCounter, 1000); updateCounter();
 
-    // EASTER EGG (5 CLICS AL LOGO)
-    const logoSecret = document.getElementById("secret-logo");
-    let clicks = 0; let timeout;
-    if (logoSecret) {
-        logoSecret.addEventListener("click", () => {
-            clicks++; clearTimeout(timeout); timeout = setTimeout(() => { clicks = 0; }, 2000);
-            if (clicks === 5) { clicks = 0; alert("✨ Mensaje Secreto: Eres el secreto mejor guardado del universo y mi rincón favorito del mundo entero. Te amo. ❤️"); }
-        });
+        const today =
+            new Date();
+
+
+        const difference =
+            today - relationshipStart;
+
+
+        const days =
+            Math.floor(
+                difference /
+                (1000 * 60 * 60 * 24)
+            );
+
+
+        const counter =
+            document.getElementById(
+                "days-val"
+            );
+
+
+        if (counter) {
+
+            counter.textContent =
+                days >= 0
+                    ? days
+                    : 0;
+
+        }
+
     }
 
-    // SCROLL REVEAL
-    const revealElements = document.querySelectorAll(".scroll-reveal");
+
+    updateCounter();
+
+
+    setInterval(
+        updateCounter,
+        60 * 60 * 1000
+    );
+
+
+    /* ==========================================
+       EASTER EGG
+    ========================================== */
+
+    const secretLogo =
+        document.getElementById(
+            "secret-logo"
+        );
+
+
+    let secretClicks = 0;
+
+    let secretTimer;
+
+
+    if (secretLogo) {
+
+        secretLogo.addEventListener(
+            "click",
+            () => {
+
+                secretClicks++;
+
+
+                clearTimeout(
+                    secretTimer
+                );
+
+
+                secretTimer =
+                    setTimeout(() => {
+
+                        secretClicks = 0;
+
+                    }, 2000);
+
+
+                if (secretClicks === 5) {
+
+                    secretClicks = 0;
+
+
+                    alert(
+                        "✨ encontraste nuestro secreto. te amo ❤️"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* ==========================================
+       ANIMACIONES AL HACER SCROLL
+    ========================================== */
+
+    const revealElements =
+        document.querySelectorAll(
+            ".scroll-reveal"
+        );
+
+
     function handleScrollReveal() {
-        revealElements.forEach(el => { if (el.getBoundingClientRect().top < window.innerHeight * 0.85) el.classList.add("is-visible"); });
+
+        const trigger =
+            window.innerHeight * .85;
+
+
+        revealElements.forEach(
+            element => {
+
+                const position =
+                    element.getBoundingClientRect()
+                        .top;
+
+
+                if (position < trigger) {
+
+                    element.classList.add(
+                        "is-visible"
+                    );
+
+                }
+
+            }
+        );
+
     }
-    window.addEventListener("scroll", handleScrollReveal);
+
+
+    window.addEventListener(
+        "scroll",
+        handleScrollReveal
+    );
+
+
+    handleScrollReveal();
+
 });
